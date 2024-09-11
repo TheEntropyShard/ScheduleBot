@@ -1,4 +1,6 @@
+FROM gradle:8.7.0 AS BUILD
+RUN gradle shadowJar
+
 FROM openjdk:17-jdk-alpine
-MAINTAINER TheEntropyShard
 COPY build/libs/bot.jar bot.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENTRYPOINT exec java -jar bot.jar
